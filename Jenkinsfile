@@ -3,9 +3,13 @@ pipeline{
 	agent any
 	
 	stages{
-		stage("checkout"){
+		stage("Playbook"){
 			steps {
-				checkout scm
+				checkout ([$class: 'GitSCM'])
+				userRemoteConfigs: [[
+				url : 'https://github.com/Sohail0786/Jenkinsdemo1.git',
+				]]
+				}
 		}
 		stage ("Run playbook1"){
 			steps	{
@@ -15,8 +19,6 @@ pipeline{
 				a=$(cat tmp/datasetname.txt)
 				echo $a
 				echo "key="$a"" > tmp/datasetname.properties
-				'''
-		
 		}
 	}
 		stage ("Read dsources file"){
