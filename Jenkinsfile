@@ -2,15 +2,7 @@ def a
 pipeline{
 	agent any
 	
-	stages{
-		stage("Playbook"){
-			steps {
-				checkout ([$class: 'GitSCM'])
-				userRemoteConfigs: [[
-				url : 'https://github.com/Sohail0786/Jenkinsdemo1.git',
-				]]
-				}
-		}
+	
 		stage ("Run playbook1"){
 			steps	{
 				sh ''' 
