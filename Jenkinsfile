@@ -3,13 +3,9 @@ pipeline{
 	agent any
 	
 	stages{
-		stage("Playbook"){
+		stage("checkout"){
 			steps {
-				checkout ([$class: 'GitSCM'])
-				userRemoteConfigs: [[
-				url : 'https://github.com/Sohail0786/Jenkinsdemo1.git',
-				]]
-				}
+				checkout scm
 		}
 		stage ("Run playbook1"){
 			steps	{
