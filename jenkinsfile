@@ -1,0 +1,27 @@
+pipeline{
+
+	agent {
+		label 'ansible'
+	}
+	
+	stages{
+		stage("Playbook" {
+			step {
+				checkout
+				branch: [[name:'*./ branchname']]
+				
+				extensions: scm.extensions,
+				userRemoteCinfigs:[[
+				url : ' git@github ...........',
+				credentialsId: ..........
+				]]
+				sh ''' 
+					ansible-playbook -i ./host delphix-dsources.yml -vvvv
+					'''
+				sh '''
+					cat /tmp/dsources
+					sh '''
+				}
+			}
+		)
+	}
