@@ -6,18 +6,14 @@ pipeline{
 		stage("Playbook"){
 			steps {
 				checkout ([$class: 'GitSCM'])
-				branches: [[name:'*./ Sohail0786-patch1']],
+				branches: [[name:'*./Sohail0786-patch1']],
 				extensions: scm.extensions,
 				userRemoteConfigs: [[
 				url : ' https://github.com/Sohail0786/jenkinsdemo1/blob/main/jenkinsfile',
 				]]
-				
-					cat /tmp/dsources
-					sh '''
 				}
-			}
-	}
-		stage ("Run playbook1")
+		}
+		stage ("Run playbook1"){
 			steps	{
 				sh ''' 
 				ansible-playbook -i ./host delphix-dsources.yml -vvvv
@@ -32,6 +28,6 @@ pipeline{
 				a= 'cat /tmp/dsources'
 				echo $a
 				"""
-				}
+			}
 		}
 	}
