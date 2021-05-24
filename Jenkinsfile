@@ -15,9 +15,11 @@ pipeline{
 		stage ("Run playbook1"){
 			steps	{
 				sh ''' 
-				ansible-playbook -i ./host delphix-dsources.yml -vvvv
-				'''
-		
+				mkdir -p tmp
+				echo "ds1,ds2,ds3" > tmp/datasetname.txt
+				a=$(cat tmp/datasetname.txt)
+				echo $a
+				echo "key="$a"" > tmp/datasetname.properties
 		}
 	}
 		stage ("Read dsources file"){
