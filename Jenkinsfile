@@ -2,6 +2,7 @@ def a
 pipeline{
 	agent any
 	
+	
 	stages{
 		stage("Playbook"){
 			steps {
