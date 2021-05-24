@@ -1,27 +1,37 @@
+def a
 pipeline{
-
-	agent {
-		label 'ansible'
-	}
+	agent any
 	
 	stages{
-		stage("Playbook" {
-			step {
-				checkout
-				branch: [[name:'*./ branchname']]
-				
+		stage("Playbook"){
+			steps {
+				checkout ([$class: 'GitSCM'])
+				branches: [[name:'*./ branchname-1']],
 				extensions: scm.extensions,
-				userRemoteCinfigs:[[
-				url : ' git@github ...........',
-				credentialsId: ..........
+				userRemoteConfigs: [[
+				url : ' https://github.com/Sohail0786/jenkinsdemo1/blob/main/jenkinsfile',
 				]]
-				sh ''' 
-					ansible-playbook -i ./host delphix-dsources.yml -vvvv
-					'''
-				sh '''
+				
 					cat /tmp/dsources
 					sh '''
 				}
 			}
-		)
+	}
+		stage ("Run playbook1")
+			steps	{
+				sh ''' 
+				ansible-playbook -i ./host delphix-dsources.yml -vvvv
+				'''
+		
+		}
+	}
+		stage ("Read dsources file"){
+			steps	{
+				sh"""
+				cat /tmp/dsources
+				a= 'cat /tmp/dsources'
+				echo $a
+				"""
+				}
+			}
 	}
