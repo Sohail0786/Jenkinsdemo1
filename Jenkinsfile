@@ -6,7 +6,7 @@ pipeline{
 		stage("Playbook"){
 			steps {
 				checkout ([$class: 'GitSCM'])
-				branches: [[name:'*./ branchname-1']],
+				branches: [[name:'*./ Sohail0786-patch1']],
 				extensions: scm.extensions,
 				userRemoteConfigs: [[
 				url : ' https://github.com/Sohail0786/jenkinsdemo1/blob/main/jenkinsfile',
