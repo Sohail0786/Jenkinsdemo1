@@ -9,7 +9,7 @@ pipeline{
 				branches: [[name: '*/Sohail0786-patch-1' ]],
 				extensions: scm.extensions,
 				userRemoteConfigs: [[
-				url : ' https://github.com/Sohail0786/jenkinsdemo1/blob/main/jenkinsfile',
+				url : 'https://github.com/Sohail0786/Jenkinsdemo1.git',
 				]]
 				}
 		}
