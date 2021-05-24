@@ -1,8 +1,6 @@
 def a
 pipeline{
 	agent any
-	
-	
 		stage ("Run playbook1"){
 			steps	{
 				sh ''' 
