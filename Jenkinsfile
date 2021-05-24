@@ -6,7 +6,6 @@ pipeline{
 		stage("Playbook"){
 			steps {
 				checkout ([$class: 'GitSCM'])
-				extensions: scm.extensions,
 				userRemoteConfigs: [[
 				url : 'https://github.com/Sohail0786/Jenkinsdemo1.git',
 				]]
