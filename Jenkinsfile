@@ -33,7 +33,7 @@ pipeline {
 					emailext body: "Job_name: ${env.JOB_NAME} Build_number: ${env.BUILD_NUMBER}\n The Database name does not exist hence please click on this link to approve the Database creation process : ${env.BUILD_URL}/console", 
 				recipientProviders: [[$class: 'DevelopersRecipientProvider']], 
 				subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - Approve Request for New Database Creation!', 
-				to: sohail0786@hotmail.co.uk" 
+				to: "sohail0786@hotmail.co.uk" 
 		  
       }
 		  
