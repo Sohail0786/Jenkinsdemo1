@@ -14,7 +14,9 @@ pipeline {
 			saveJSONParameterToFile: false, 
 			type: 'PT_SINGLE_SELECT', visibleItemCount: 10)
 	    		}
-	stage ("Run playbook1"){
+	
+	stages {
+		stage ("Run playbook1"){
 			steps	{
 				sh ''' 
 				mkdir -p tmp
@@ -24,7 +26,6 @@ pipeline {
 				echo "key="$a"" > tmp/datasetname.properties
 				}
 		}
-	stages {
 		stage('Check if DB exist'){
 			steps {
 				script {
@@ -57,7 +58,7 @@ pipeline {
 				script {
 					if ( params.DB_NAME.contains('NA')) {
 					input message: "Proceed or Abort"
-					// input message: "Proceed or Abort", submitter: "username", parameters: [string(name:'username', defaultValue: 'user1', description: 'Username of the user pressing Ok')] 
+					input message: "Proceed or Abort", submitter: "username", parameters: [string(name:'username', defaultValue: 'user1', description: 'Username of the user pressing Ok')] 
 					echo "Attach your DB creation script in the script block here, which will be executed post approval"
 					}
 					else {
@@ -77,8 +78,7 @@ pipeline {
 				 }
 			 }
 		 }
-	 }
+		 }
 	 
-	 	
+	 	}
 	}
-}
