@@ -1,28 +1,8 @@
-def a
-pipeline{
+pipeline {
+
 	agent any
-		stage ("Run playbook1"){
-			steps	{
-				sh ''' 
-				mkdir -p tmp
-				echo "ds1,ds2,ds3" > tmp/datasetname.txt
-				a=$(cat tmp/datasetname.txt)
-				echo $a
-				echo "key="$a"" > tmp/datasetname.properties
-		}
-	}
-		stage ("Read dsources file"){
-			steps	{
-				sh"""
-				cat /tmp/dsources
-				a= 'cat /tmp/dsources'
-				echo $a
-				"""
-			}
-		}
-	}
-	
-	parameters {
+
+		parameters {
 
 			extendedChoice(defaultValue: 'NA',
 			description: 'Select DB name if your required DB is available. If your intended DB name is not available do not select any option and proceed to build to create your DB',
@@ -90,4 +70,6 @@ pipeline{
 	 }
 	 
 	 	
+}
+
 }
