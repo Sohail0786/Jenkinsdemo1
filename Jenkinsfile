@@ -1,34 +1,29 @@
-def a
-pipeline{
-	agent any
+pipeline {
+    agent any
+	Stages {
+		stage('Example'){
+			input{
+			message "Select the DB"
+			OK 'Proceed!'
+			parameters {
+			extendedChoice defaultValue: 'test_db1,test_db2,test_db3,test_db4',
+			description: '',
+			descriptionPropertValue: 'test_db1,test_db2,test_db3,test_db4',
+			multiSelectDelimiter: ',', 		
+			name: 'DB_NAME',
+			quoteValue: false,
+			saveJSONParameterToFile: false,
+			type: 'PT_SINGLE_SELECT', 
+			value: 'test_db1,test_db2,test_db3,test_db4',
+			visibleItemCount: 5)
+            }
+        }
+    }
+            steps {
+            echo "DB selected by you is ${DB_NAME}"
+            }
+
+    }
+
 	
-	
-	stages{
-		stage("Playbook"){
-			steps {
-				checkout ([$class: 'GitSCM'])
-				userRemoteConfigs: [[
-				url : 'https://github.com/Sohail0786/Jenkinsdemo1.git',
-				]]
-				}
-		}
-		stage ("Run playbook1"){
-			steps	{
-				sh ''' 
-				mkdir -p tmp
-				echo "ds1,ds2,ds3" > tmp/datasetname.txt
-				a=$(cat tmp/datasetname.txt)
-				echo $a
-				echo "key="$a"" > tmp/datasetname.properties
-		}
-	}
-		stage ("Read dsources file"){
-			steps	{
-				sh"""
-				cat /tmp/dsources
-				a= 'cat /tmp/dsources'
-				echo $a
-				"""
-			}
-		}
 }
