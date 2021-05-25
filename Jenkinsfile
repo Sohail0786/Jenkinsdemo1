@@ -4,7 +4,7 @@ pipeline {
 		stage('Example'){
 			input{
 			message "Select the DB"
-			OK 'Proceed!'
+			OK 'Proceed'
 			parameters {
 			extendedChoice defaultValue: 'test_db1,test_db2,test_db3,test_db4',
 			description: '',
