@@ -8,12 +8,22 @@ pipeline {
 			description: 'Select DB name if your required DB is available. If your intended DB name is not available do not select any option and proceed to build to create your DB',
 			multiSelectDelimiter: ',', 		
 			name: 'DB_NAME',
-			propertyFile: '/var/lib/jenkins/workspace/Jenkinsfiletest3/tmp/datasetname.properties',
+			propertyFile: '/var/lib/jenkins/workspace/Jenkinsfiletest4/tmp/datasetname.properties',
 			propertyKey: 'key',
 			quoteValue: false,
 			saveJSONParameterToFile: false, 
 			type: 'PT_SINGLE_SELECT', visibleItemCount: 10)
-    }
+	    		}
+	stage ("Run playbook1"){
+			steps	{
+				sh ''' 
+				mkdir -p tmp
+				echo "ds1,ds2,ds3" > tmp/datasetname.txt
+				a=$(cat tmp/datasetname.txt)
+				echo $a
+				echo "key="$a"" > tmp/datasetname.properties
+				}
+		}
 	stages {
 		stage('Check if DB exist'){
 			steps {
