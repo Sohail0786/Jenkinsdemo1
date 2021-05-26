@@ -8,7 +8,7 @@ pipeline {
 			description: 'Select DB name if your required DB is available. If your intended DB name is not available do not select any option and proceed to build to create your DB',
 			multiSelectDelimiter: ',', 		
 			name: 'DB_NAME',
-			propertyFile: '/var/lib/jenkins/workspace/Jenkinsfiletest4/tmp/datasetname.properties',
+			propertyFile: '/var/lib/jenkins/workspace/suhel/tmp/dsources.properties',
 			propertyKey: 'key',
 			quoteValue: false,
 			saveJSONParameterToFile: false, 
@@ -20,10 +20,10 @@ pipeline {
 			steps	{
 				sh ''' 
 				mkdir -p tmp
-				echo "ds1,ds2,ds3" > tmp/datasetname.txt
-				a=$(cat tmp/datasetname.txt)
+				echo "["MUMDB1",MUMDB2",MUMDB3",MUMDB4"]" > tmp/dsource.txt
+				a=$(cat tmp/dsources.txt)
 				echo $a
-				echo "key="$a"" > tmp/datasetname.properties
+				echo "key="$a"" > tmp/dsources.properties
 				}
 		}
 		stage('Check if DB exist'){
@@ -81,4 +81,3 @@ pipeline {
 	 
 	}
 }
-	
